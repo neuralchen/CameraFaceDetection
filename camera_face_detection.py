@@ -2,17 +2,15 @@ import cv2
 from insightface_func.face_detect_crop_single import Face_detect
 
 if __name__ == "__main__":
-    cap = cv2.VideoCapture(1) 
+    cap = cv2.VideoCapture(0) 
     if cap.isOpened():
-        print("found camera 1")
+        print("found camera 0")
     else:
         print("No Camera Found!")
         exit()
     # 以下set若相机不支持该分辨率，即使执行也无效
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
-    height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    width  = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 
     mode   = "ffhq" # 人脸检测后的crop方式
 
@@ -35,5 +33,5 @@ if __name__ == "__main__":
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break        
-    cap.release()  
+    cap.release()
     cv2.destroyAllWindows() 
